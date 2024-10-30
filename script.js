@@ -25,7 +25,7 @@ const typed = new Typed('#autoText', {
 
 // Smooth Navbar Background Change on Scroll
 const navbar = document.querySelector('.navbar');
-window.addEventListener('scroll', () => {
+const handleScroll = () => {
     if (window.scrollY > 50) {
         navbar.style.background = 'rgba(0, 0, 0, 0.95)';
         navbar.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.3)';
@@ -33,7 +33,9 @@ window.addEventListener('scroll', () => {
         navbar.style.background = 'linear-gradient(135deg, #000000cb 0%, #000000dd 100%)';
         navbar.style.boxShadow = 'none';
     }
-});
+};
+
+window.addEventListener('scroll', handleScroll);
 
 // Animated Progress Bars for Skills
 const animateProgressBars = () => {
@@ -63,14 +65,14 @@ observer.observe(skillsSection);
 // Project Cards Hover Effect Enhancement
 const projectCards = document.querySelectorAll('.card');
 projectCards.forEach(card => {
-    card.addEventListener('mouseenter', (e) => {
+    card.addEventListener('mouseenter', () => {
         const image = card.querySelector('img');
         if (image) {
             image.style.transform = 'translate(-50%, -50%) scale(1.1)';
         }
     });
 
-    card.addEventListener('mouseleave', (e) => {
+    card.addEventListener('mouseleave', () => {
         const image = card.querySelector('img');
         if (image) {
             image.style.transform = 'translate(-50%, -50%) scale(1)';
@@ -164,12 +166,14 @@ const showNotification = (message, type = 'success') => {
 
 // Parallax Effect for Hero Section
 const heroSection = document.querySelector('.hero_section');
-window.addEventListener('scroll', () => {
+const parallaxEffect = () => {
     if (heroSection) {
         const scrolled = window.pageYOffset;
         heroSection.style.backgroundPositionY = `${scrolled * 0.5}px`;
     }
-});
+};
+
+window.addEventListener('scroll', parallaxEffect);
 
 // Add Custom Cursor Effect
 const createCustomCursor = () => {
@@ -206,10 +210,10 @@ const createCustomCursor = () => {
     document.body.appendChild(dot);
     
     document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-        dot.style.left = e.clientX + 'px';
-        dot.style.top = e.clientY + 'px';
+        cursor.style.left = `${e.clientX}px`;
+        cursor.style.top = `${e.clientY}px`;
+        dot.style.left = `${e.clientX}px`;
+        dot.style.top = `${e.clientY}px`;
     });
     
     // Add hover effect for interactive elements
@@ -251,3 +255,38 @@ const lazyLoadImages = () => {
 
 // Initialize lazy loading
 document.addEventListener('DOMContentLoaded', lazyLoadImages);
+
+// Hide navbar on scroll
+let lastScroll = 0;
+const handleNavbarHideShow = () => {
+    const currentScroll = window.pageYOffset;
+
+    // If we're at the top of the page
+    if (currentScroll <= 0) {
+        navbar.classList.remove('hidden');
+        return;
+    }
+
+    // Scrolling down
+    if (currentScroll > lastScroll) {
+        navbar.classList.add('hidden');
+    } 
+    // Scrolling up
+    else if (currentScroll < lastScroll) {
+        navbar.classList.remove('hidden');
+    }
+
+    lastScroll = currentScroll;
+};
+
+// Debounce the scroll event to improve performance
+let ticking = false;
+window.addEventListener('scroll', () => {
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            handleNavbarHideShow();
+            ticking = false;
+        });
+        ticking = true;
+    }
+});
