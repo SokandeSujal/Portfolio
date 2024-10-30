@@ -11,7 +11,7 @@ def generate_commit_date(days_ago):
     return date.strftime('%Y-%m-%dT%H:%M:%S')
 
 for i in range(1, 60):
-    for j in range(randint(1, 10)):
+    for j in range(randint(1, 30)):
         d = f'{i} days ago'
         with open('file.txt', 'a') as file:
             file.write(d + '\n')  # Added newline for readability
