@@ -873,3 +873,74 @@ footer a:hover {
         font-size: 28px; /* Further reduction for very small screens */
     }
 }
+
+/* Social Profile Section */
+.social-profiles {
+    text-align: center;
+    padding: 4rem 2rem;
+    background-color: #000000; /* Dark background to match the black box section */
+    color: white;
+  }
+  
+  .social-profiles h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: white;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+  }
+  
+  .social-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .social-link {
+    font-size: 2.5rem;
+    color: #ffffff;
+    transition: transform 0.3s ease, color 0.3s ease;
+    position: relative;
+  }
+  
+  .social-link:hover {
+    transform: scale(1.2);
+    color: #3d9970; /* Matches the accent color used in hero and black box sections */
+  }
+  
+  .social-link::after {
+    content: attr(data-platform);
+    position: absolute;
+    top: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .social-link:hover::after {
+    opacity: 1;
+  }
+  
+  /* Glow Effect for Icons */
+  .social-link:hover {
+    text-shadow: 0 0 10px #3d9970, 0 0 20px #3d9970, 0 0 30px #3d9970;
+  }
+  
+  /* Responsive Styling */
+  @media (max-width: 600px) {
+    .social-profiles h2 {
+      font-size: 2rem;
+    }
+  
+    .social-link {
+      font-size: 2rem;
+    }
+  
+    .social-icons {
+      gap: 1.5rem;
+    }
+  }
+  

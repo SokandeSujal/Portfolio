@@ -290,3 +290,19 @@ window.addEventListener('scroll', () => {
         ticking = true;
     }
 });
+
+// Social Profile Animations on Scroll
+const socialSection = document.querySelector('.social-profiles');
+const observeSocial = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      socialSection.classList.add('animate-social');
+      observeSocial.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+observeSocial.observe(socialSection);
+
+
+
