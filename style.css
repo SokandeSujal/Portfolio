@@ -944,3 +944,182 @@ footer a:hover {
     }
   }
   
+/* dcsfcdggvvvvvvvvvvvvvvvvvvvvvdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd */
+
+.animation-section {
+    min-height: 100vh;
+    color: #ffffff;
+    background-color: #CDCDCD;
+    background-image:
+        repeating-linear-gradient(to right, transparent 0 150px, #0001 150px 151px),
+        repeating-linear-gradient(to bottom, transparent 0 150px, #0001 150px 151px),
+        linear-gradient(to right, #2D2D2Dcc, #1a1919cc),
+        url(images/bg.jpg);
+    position: relative;
+    overflow: hidden;
+}
+
+.animation-header {
+    width: min(1200px, 90vw);
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 50px;
+    height: 0px;
+    flex-wrap: wrap;
+}
+
+.animation-header h2 {
+    font-size: 4rem;
+    line-height: 0.8em;
+    color: #ffffff;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.animation-header .author {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.animation-header h3 {
+    font-size: 2rem;
+}
+
+.animation-header .author div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.animation-header .author div p:nth-child(2) {
+    font-weight: 500;
+}
+
+.animation-banner {
+    margin-top: -50px;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.product {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 170px;
+    z-index: 2;
+    width: 400px; /* Reduced size of product */
+    transition: 0.7s;
+}
+
+.product .soda {
+    position: absolute;
+    bottom: 0;
+    left: calc(50%);
+    transform: translateX(-50%);
+}
+
+.soda {
+    --left: 0px;
+    background: 
+        var(--url) var(--left),
+        url(images/mockup.png) 0 0;
+    background-size: auto 100%;
+    width: 200px; /* Reduced soda can size */
+    aspect-ratio: 2 / 4;
+    background-blend-mode: multiply;
+    transition: 0.8s;
+    mask-image: url(images/mockup.png);
+    mask-size: auto 100%;
+}
+
+.soda:nth-child(2) {
+    opacity: 0;
+}
+
+.product:hover {
+    bottom: 300px;
+}
+
+.product:hover .soda:nth-child(2) {
+    opacity: 1;
+    --left: 500px;
+}
+
+.product:hover .soda:nth-child(1) {
+    opacity: 0;
+    --left: 500px;
+}
+
+.rock {
+    position: absolute;
+    inset: 0 0 0 0;
+    width: 100%;
+    pointer-events: none;
+}
+
+.rock img:nth-child(1) {
+    position: absolute;
+    height: 170px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 30px;
+    transition: 0.7s;
+    z-index: 1;
+}
+
+.rock img:nth-child(2) {
+    position: absolute;
+    height: 50%;
+    left: 0;
+    bottom: 0;
+    transition: 0.7s;
+}
+
+.rock img:nth-child(3) {
+    position: absolute;
+    height: 100%;
+    right: 0;
+    bottom: -100px;
+    rotate: -25deg;
+    transition: 0.7s;
+}
+
+.animation-banner:has(.product:hover) .rock img:nth-child(1) {
+    transform: translateX(-50%) translateY(50px);
+}
+
+.animation-banner:has(.product:hover) .rock img:nth-child(2) {
+    transform: translateX(-100px) translateY(100px);
+}
+
+.animation-banner:has(.product:hover) .rock img:nth-child(3) {
+    transform: translateX(100px) translateY(100px);
+}
+
+/* Reduced barcode size */
+.animation-header img {
+    max-width: 120px; /* Reduced barcode size */
+    margin: auto; /* Center barcode */
+}
+
+@media screen and (max-width: 1023px) {
+    .soda {
+        width: 200px; /* Adjusted for tablets */
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .soda {
+        width: 180px; /* Further reduced on mobile */
+    }
+    .animation-header img {
+        display: none;
+    }
+    .animation-header .author {
+        width: 100%;
+    }
+}
