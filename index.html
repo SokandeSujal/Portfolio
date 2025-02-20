@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="script.js" type="module"></script>
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css"
@@ -20,6 +20,13 @@
     />
   </head>
   <body>
+    <div id="loader-wrapper">
+      <div class="neural-network" id="neuralNetwork"></div>
+      <div class="welcome-text">Welcome to My Portfolio</div>
+      <div class="loading-progress">
+        <div class="progress-bar"></div>
+      </div>
+    </div>
     <nav class="navbar">
       <div class="navbar-container">
         <a href="#hero" class="nav-link">Home</a>
@@ -51,31 +58,6 @@
           loop: true,
         });
       </script>
-    </section>
-
-    <section class="animation-section" id="animation">
-      <div class="animation-header">
-        <div class="left">
-          <h2>Crafting AI That Thinks</h2>
-        </div>
-        <div class="author">
-          <div>
-            <p>Hover to animate</p>
-          </div>
-          <img src="images/code.png" alt="Code Element" />
-        </div>
-      </div>
-      <div class="animation-banner">
-        <div class="product">
-          <div class="soda" style="--url: url(images/bg-1.png)"></div>
-          <div class="soda" style="--url: url(images/bg-2.png)"></div>
-        </div>
-        <div class="rock">
-          <img src="images/rock1.png" alt="Rock Element 1" />
-          <img src="images/rock2.png" alt="Rock Element 2" />
-          <img src="images/rock3.png" alt="Rock Element 3" />
-        </div>
-      </div>
     </section>
 
     <section class="black_box" id="projects">
@@ -568,8 +550,206 @@
     <script>
       AOS.init();
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="your-script-file.js" type="module"></script>
+    <script>
+      // Fullscreen neural network loader with all features (no sound)
+      function createNeuralNetwork() {
+        const wrapper = document.getElementById("loader-wrapper");
+        const network = document.getElementById("neuralNetwork");
+        const layers = [8, 12, 15, 12, 10, 8]; // More nodes, layered structure
+        const nodes = [];
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        // Create nodes across full screen
+        layers.forEach((nodeCount, layerIndex) => {
+          const layerNodes = [];
+          const xOffset = (layerIndex * width) / (layers.length - 1);
+          for (let i = 0; i < nodeCount; i++) {
+            const node = document.createElement("div");
+            node.className = "node";
+            const randomOffsetY = (Math.random() - 0.5) * (height / nodeCount);
+            const yPos = (height / (nodeCount + 1)) * (i + 1) + randomOffsetY;
+            const xPos =
+              xOffset + (Math.random() - 0.5) * (width / layers.length / 2);
+            node.style.left = `${xPos}px`;
+            node.style.top = `${yPos}px`;
+            node.style.animationDelay = `${layerIndex * 0.4}s`; // Sequential activation
+            network.appendChild(node);
+            layerNodes.push(node);
+
+            // Hover interactivity
+            node.addEventListener("mouseenter", () =>
+              node.classList.add("highlight")
+            );
+            node.addEventListener("mouseleave", () =>
+              node.classList.remove("highlight")
+            );
+          }
+          nodes.push(layerNodes);
+        });
+
+        // Dense connections for neural net look
+        for (let i = 0; i < nodes.length - 1; i++) {
+          const currentLayer = nodes[i];
+          const nextLayer = nodes[i + 1];
+          currentLayer.forEach((startNode) => {
+            const connectCount = Math.min(
+              nextLayer.length,
+              Math.floor(Math.random() * nextLayer.length * 0.8) + 3
+            );
+            const shuffledNext = nextLayer
+              .sort(() => 0.5 - Math.random())
+              .slice(0, connectCount);
+            shuffledNext.forEach((endNode) => {
+              const connection = document.createElement("div");
+              connection.className = "connection";
+              const startX = parseFloat(startNode.style.left);
+              const startY = parseFloat(startNode.style.top);
+              const endX = parseFloat(endNode.style.left);
+              const endY = parseFloat(endNode.style.top);
+              const length = Math.sqrt(
+                Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2)
+              );
+              const angle = Math.atan2(endY - startY, endX - startX);
+              connection.style.width = `${length}px`;
+              connection.style.left = `${startX}px`;
+              connection.style.top = `${startY}px`;
+              connection.style.transform = `rotate(${angle}rad)`;
+              connection.style.animationDelay = `${
+                i * 0.4 + Math.random() * 0.3
+              }s`;
+              network.appendChild(connection);
+
+              // Data pulse
+              const pulse = document.createElement("div");
+              pulse.className = "data-pulse";
+              pulse.style.left = `${startX}px`;
+              pulse.style.top = `${startY}px`;
+              pulse.style.setProperty("--end-x", `${endX - startX}px`);
+              pulse.style.setProperty("--end-y", `${endY - startY}px`);
+              pulse.style.animationDelay = `${i * 0.4 + Math.random() * 0.8}s`;
+              network.appendChild(pulse);
+            });
+          });
+        }
+
+        // Fullscreen particles
+        for (let i = 0; i < 100; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+          particle.style.left = `${Math.random() * 100}vw`;
+          particle.style.top = `${Math.random() * 100}vh`;
+          particle.style.animationDelay = `${Math.random() * 4}s`;
+          wrapper.appendChild(particle); // Attach to wrapper, not network
+        }
+
+        // Techy text integration
+        const welcomeText = document.querySelector(".welcome-text");
+        welcomeText.style.position = "absolute";
+        welcomeText.style.bottom = "15vh";
+        welcomeText.style.left = "50%";
+        welcomeText.style.transform = "translateX(-50%)";
+        const text = "Welcome to My Portfolio";
+        welcomeText.innerHTML = "";
+        text.split("").forEach((char, idx) => {
+          const span = document.createElement("span");
+          span.textContent = char === " " ? "\u00A0" : char;
+          span.className = "welcome-char";
+          span.style.animationDelay = `${2.5 + idx * 0.08}s`; // After nodes
+          welcomeText.appendChild(span);
+        });
+
+        // AI Narrative (techy terminal style)
+        const narrative = document.createElement("div");
+        narrative.className = "ai-narrative";
+        narrative.style.bottom = "10vh";
+        wrapper.appendChild(narrative);
+        const narrativeTexts = [
+          "Initializing Neural Net...",
+          "Connecting Synapses...",
+          "Portfolio Online",
+        ];
+        let narrativeIdx = 0;
+        function updateNarrative() {
+          narrative.textContent = narrativeTexts[narrativeIdx];
+          narrativeIdx = (narrativeIdx + 1) % narrativeTexts.length;
+        }
+        updateNarrative();
+        setInterval(updateNarrative, 1200);
+      }
+
+      // Initialize loader
+      document.addEventListener("DOMContentLoaded", () => {
+        createNeuralNetwork();
+
+        // Hide loader with explosive finale
+        window.addEventListener("load", () => {
+          setTimeout(() => {
+            const loader = document.getElementById("loader-wrapper");
+            const progressBar = document.querySelector(".progress-bar");
+            const network = document.getElementById("neuralNetwork");
+            const nodes = document.querySelectorAll(".node");
+            const connections = document.querySelectorAll(".connection");
+            const welcomeText = document.querySelector(".welcome-text");
+
+            // Progress bar to 100%
+            progressBar.style.width = "100%";
+
+            // Explosive finale
+            setTimeout(() => {
+              nodes.forEach((node, idx) => {
+                node.style.transition = "all 0.6s ease";
+                node.style.transform = `translate(${
+                  (Math.random() - 0.5) * 500
+                }px, ${(Math.random() - 0.5) * 500}px) scale(0)`;
+                node.style.opacity = "0";
+              });
+              connections.forEach((conn) => (conn.style.opacity = "0"));
+              welcomeText.style.opacity = "0";
+
+              // Finale particles forming "Sujal"
+              const finaleParticles = [];
+              for (let i = 0; i < 150; i++) {
+                const particle = document.createElement("div");
+                particle.className = "finale-particle";
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                loader.appendChild(particle);
+                finaleParticles.push(particle);
+              }
+              setTimeout(() => {
+                const sujalPositions = [
+                  { x: 40, y: 45 },
+                  { x: 45, y: 45 },
+                  { x: 50, y: 45 },
+                  { x: 55, y: 45 },
+                  { x: 60, y: 45 }, // Rough "Sujal"
+                ];
+                finaleParticles.forEach((p, idx) => {
+                  p.style.transition = "all 0.8s ease";
+                  const pos = sujalPositions[idx % 5];
+                  p.style.left = `${pos.x}vw`;
+                  p.style.top = `${pos.y}vh`;
+                });
+                setTimeout(() => {
+                  finaleParticles.forEach((p) => {
+                    p.style.transform = `translate(${
+                      (Math.random() - 0.5) * 2000
+                    }px, ${(Math.random() - 0.5) * 2000}px)`;
+                    p.style.opacity = "0";
+                  });
+                  loader.classList.add("fade-out");
+                  setTimeout(() => {
+                    loader.style.display = "none";
+                    document.body.style.backgroundColor = "#fff";
+                  }, 500);
+                }, 800);
+              }, 600);
+            }, 1500);
+          }, 6000); // ~7.5s total for full effect
+        });
+      });
+    </script>
   </body>
 </html>
