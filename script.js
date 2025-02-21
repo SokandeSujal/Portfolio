@@ -319,3 +319,67 @@ observeSocial.observe(socialSection);
 
 
 
+/* Walking SVG Animation by Diaco m.lotfollahi */
+// Walking SVG Animation by Diaco m.lotfollahi (Adapted for updated IDs)
+document.addEventListener('DOMContentLoaded', () => {
+    var Doc = document,
+        TwL = TweenLite,
+        E0 = Sine.easeInOut,
+        E1 = Sine.easeIn,
+        E2 = Sine.easeOut,
+        walkerBody = Doc.getElementById('walkerBody'),
+        upperBody = Doc.getElementById('upperBody'),
+        walkerFeet = Doc.getElementById('walkerFeet'),
+        walkerHand = Doc.getElementById('walkerHand');
+  
+    // Ensure SVG is visible and set initial states
+    TwL.set('#walkingSvg', { opacity: 1 });
+    TwL.set(walkerBody, { y: 10 });
+    TwL.set(upperBody, { fill: '#151515', transformOrigin: '50% 100%' });
+    TwL.set(walkerHand, { transformOrigin: '-5px 0px', rotation: -10, fill: '#454545', y: -1 });
+    TwL.set(walkerFeet, { transformOrigin: '55% 10px', rotation: -37, fill: '#DC002E' });
+    TwL.set('#walkerHead', { transformOrigin: '5px 50px', fill: '#454545', scale: 0.967, rotation: -5 });
+    TwL.set('.hand1', { rotation: -20, transformOrigin: '0px 5px', y: -5 });
+    TwL.set('.hand2', { transformOrigin: '10% 0%', rotation: -10, y: -1.5, scaleY: 1.03 });
+    TwL.set('.foot1', { transformOrigin: '21px 2px' });
+    TwL.set('.foot2', { transformOrigin: '25px 0px' });
+    TwL.set('.foot3', { transformOrigin: '4.2px 4.2px' });
+  
+    // Clone nodes for additional animation parts
+    var walkerFeet2 = walkerFeet.cloneNode(true),
+        walkerHand2 = walkerHand.cloneNode(true);
+    walkerFeet2.id = 'walkerFeetBase';
+    walkerHand2.id = 'walkerHandBase';
+    walkerBody.insertBefore(walkerFeet2, upperBody);
+    walkerBody.insertBefore(walkerHand2, walkerFeet2);
+  
+    TwL.set('.walkerFootBase', { fill: '#DC002E' });
+    TwL.set('#walkerFeetBase', { fill: '#A50018' });
+    TwL.set('#walkerHandBase', { y: -3, fill: '#333' });
+  
+    // Animation function
+    function animateWalker(p1, p2) {
+      var tl = new TimelineMax({ repeat: -1 })
+        .add("l1", 0).add("l2", .25).add("l3", .5).add("l4", .75).add("l5", 1)
+        .to(p1, .5, { rotation: 27, ease: E0 }, 'l1')
+        .to(p1, .25, { rotation: -37, ease: E1 }, 'l3')
+        .to(p1 + ' .foot1', .25, { rotation: 15, ease: E0 }, 'l2')
+        .to(p1 + ' .foot1', .25, { rotation: 80, ease: E1 }, 'l3')
+        .to(p1 + ' .foot1', .25, { rotation: 0, ease: E2 }, 'l4')
+        .to(p1 + ' .foot2', .25, { rotation: 45, repeat: 1, yoyo: true }, 'l3')
+        .to(p1 + ' .foot3', .25, { rotation: -35, repeat: 1, yoyo: true, scaleX: .925 }, 'l2')
+        .to(p2, .5, { rotation: 25, ease: E0, yoyo: true, repeat: 1 }, 'l1')
+        .to(p2 + ' .hand1', .5, { rotation: 15, ease: E0, yoyo: true, repeat: 1 }, 'l1')
+        .to(p2 + ' .hand2', .5, { rotation: 0, ease: E0, yoyo: true, repeat: 1 }, 'l1');
+      return tl;
+    }
+  
+    // Start the animation
+    var walkerTl = new TimelineLite()
+      .add(animateWalker('#walkerFeet', '#walkerHandBase'))
+      .add(animateWalker('#walkerFeetBase', '#walkerHand'), 0.5)
+      .to(walkerBody, .25, { y: '+=20', repeat: -1, yoyo: true, ease: E0 }, 0)
+      .to('#walkerHead', .25, { rotation: 1, repeat: -1, yoyo: true, ease: E0 }, 0)
+      .to('#walkingShadow', .25, { scaleX: .6, repeat: -1, yoyo: true, ease: E1, transformOrigin: 'center' }, 0)
+      .time(.5);
+  });
