@@ -49,15 +49,28 @@ const animateProgressBars = () => {
     });
 };
 
-// Trigger progress bar animation when skills section is in view
+// Animate Hexagon Fills on Scroll
 const skillsSection = document.querySelector('#skills');
+const hexagons = document.querySelectorAll('.skill-hexagon');
+
+const animateHexagons = () => {
+  hexagons.forEach(hex => {
+    const fill = hex.querySelector('.hexagon-fill');
+    const progress = hex.getAttribute('data-progress');
+    fill.style.height = '0'; // Reset
+    setTimeout(() => {
+      fill.style.height = `${progress}%`; // Animate to progress
+    }, 100);
+  });
+};
+
 const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            animateProgressBars();
-            observer.unobserve(entry.target);
-        }
-    });
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateHexagons();
+      observer.unobserve(entry.target);
+    }
+  });
 }, { threshold: 0.5 });
 
 observer.observe(skillsSection);

@@ -20,13 +20,76 @@
     />
   </head>
   <body>
-    <div id="loader-wrapper">
-      <div class="neural-network" id="neuralNetwork"></div>
-      <div class="welcome-text">Welcome to My Portfolio</div>
-      <div class="loading-progress">
-        <div class="progress-bar"></div>
-      </div>
+    <div id="energy-preloader">
+      <svg
+        width="240px"
+        height="120px"
+        viewBox="0 0 240 120"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+      >
+        <path
+          id="energy-loop-normal"
+          class="energy-st1"
+          d="M120.5,60.5L146.48,87.02c14.64,14.64,38.39,14.65,53.03,0s14.64-38.39,0-53.03s-38.39-14.65-53.03,0L120.5,60.5L94.52,87.02c-14.64,14.64-38.39,14.64-53.03,0c-14.64-14.64-14.64-38.39,0-53.03c14.65-14.64,38.39-14.65,53.03,0z"
+        >
+          <animate
+            attributeName="stroke-dasharray"
+            from="500, 50"
+            to="450 50"
+            begin="0s"
+            dur="2s"
+            repeatCount="indefinite"
+          />
+          <animate
+            attributeName="stroke-dashoffset"
+            from="-40"
+            to="-540"
+            begin="0s"
+            dur="2s"
+            repeatCount="indefinite"
+          />
+        </path>
+
+        <path
+          id="energy-loop-offset"
+          d="M146.48,87.02c14.64,14.64,38.39,14.65,53.03,0s14.64-38.39,0-53.03s-38.39-14.65-53.03,0L120.5,60.5L94.52,87.02c-14.64,14.64-38.39,14.64-53.03,0c-14.64-14.64-14.64-38.39,0-53.03c14.65-14.64,38.39-14.65,53.03,0L120.5,60.5L146.48,87.02z"
+        ></path>
+
+        <path
+          id="energy-socket"
+          d="M7.5,0c0,8.28-6.72,15-15,15l0-30C0.78-15,7.5-8.28,7.5,0z"
+        >
+          <animateMotion
+            dur="2s"
+            repeatCount="indefinite"
+            rotate="auto"
+            keyTimes="0;1"
+            keySplines="0.42, 0.0, 0.58, 1.0"
+          >
+            <mpath xlink:href="#energy-loop-offset" />
+          </animateMotion>
+        </path>
+
+        <path
+          id="energy-plug"
+          d="M0,9l15,0l0-5H0v-8.5l15,0l0-5H0V-15c-8.29,0-15,6.71-15,15c0,8.28,6.71,15,15,15V9z"
+        >
+          <animateMotion
+            dur="2s"
+            rotate="auto"
+            repeatCount="indefinite"
+            keyTimes="0;1"
+            keySplines="0.42, 0, 0.58, 1"
+          >
+            <mpath xlink:href="#energy-loop-normal" />
+          </animateMotion>
+        </path>
+      </svg>
+
+      <div class="energy-subtitle">Portfolio Loading…</div>
     </div>
+
     <nav class="navbar">
       <div class="navbar-container">
         <a href="#hero" class="nav-link">Home</a>
@@ -45,13 +108,14 @@
       <script>
         var typed = new Typed(".autoText", {
           strings: [
-            "FULL STACK DEVELOPER",
-            "PROGRAMMER",
-            "AI/ML ENTHUSIAST",
+            "MACHINE LEARNING ENGINEER",
+            "DEEP LEARNING PRACTITIONER",
+            "AI/ML INNOVATOR",
             "COMPETITIVE PROGRAMMER",
-            "UI/UX DESIGNER",
-            "WEB DEVELOPER",
-            "TECH INNOVATOR",
+            "DATA SCIENCE ENTHUSIAST",
+            "NEURAL NETWORK ARCHITECT",
+            "AI SOLUTION BUILDER",
+            "TECHNOLOGY ADVOCATE",
           ],
           typeSpeed: 150,
           backSpeed: 150,
@@ -300,78 +364,204 @@
     <section class="skills" id="skills">
       <h2>My Skills</h2>
       <div class="skills-container">
-        <div class="skill">
+        <!-- Initially Visible Skills -->
+        <div class="skill skill-visible" data-aos="fade-right">
           <h3>C</h3>
-          <div class="progress-bar">
-            <div class="progress" style="width: 100%"></div>
+          <div class="progress-barr">
+            <div class="progresss" data-width="100%"></div>
           </div>
         </div>
-        <div class="skill">
+        <div class="skill skill-visible" data-aos="fade-left">
           <h3>C++</h3>
-          <div class="progress-bar">
-            <div class="progress" style="width: 75%"></div>
+          <div class="progress-barr">
+            <div class="progresss" data-width="80%"></div>
           </div>
         </div>
-        <div class="skill">
+        <div class="skill skill-visible" data-aos="fade-right">
           <h3>Java</h3>
-          <div class="progress-bar">
-            <div class="progress" style="width: 85%"></div>
+          <div class="progress-barr">
+            <div class="progresss" data-width="85%"></div>
           </div>
         </div>
-        <div class="skill">
+        <div class="skill skill-visible" data-aos="fade-left">
           <h3>Python</h3>
-          <div class="progress-bar">
-            <div class="progress" style="width: 90%"></div>
+          <div class="progress-barr">
+            <div class="progresss" data-width="90%"></div>
           </div>
         </div>
-        <div class="skill">
+        <div class="skill skill-visible" data-aos="fade-right">
           <h3>HTML</h3>
-          <div class="progress-bar">
-            <div class="progress" style="width: 100%"></div>
+          <div class="progress-barr">
+            <div class="progresss" data-width="100%"></div>
           </div>
         </div>
-        <div class="skill">
+        <div class="skill skill-visible" data-aos="fade-left">
           <h3>CSS</h3>
-          <div class="progress-bar">
-            <div class="progress" style="width: 90%"></div>
+          <div class="progress-barr">
+            <div class="progresss" data-width="90%"></div>
           </div>
         </div>
-        <div class="skill">
+
+        <!-- Hidden Skills -->
+        <div class="skill skill-hidden" data-aos="fade-right">
           <h3>JavaScript</h3>
-          <div class="progress-bar">
-            <div class="progress" style="width: 90%"></div>
+          <div class="progress-barr">
+            <div class="progresss" data-width="90%"></div>
           </div>
         </div>
-        <div class="skill">
+        <div class="skill skill-hidden" data-aos="fade-left">
           <h3>React</h3>
-          <div class="progress-bar">
-            <div class="progress" style="width: 5%"></div>
+          <div class="progress-barr">
+            <div class="progresss" data-width="10%"></div>
           </div>
         </div>
-        <div class="skill">
+        <div class="skill skill-hidden" data-aos="fade-right">
           <h3>Node.js</h3>
-          <div class="progress-bar">
-            <div class="progress" style="width: 10%"></div>
+          <div class="progress-barr">
+            <div class="progresss" data-width="5%"></div>
           </div>
         </div>
-        <div class="skill">
+        <div class="skill skill-hidden" data-aos="fade-left">
           <h3>Machine Learning</h3>
-          <div class="progress-bar">
-            <div class="progress" style="width: 75%"></div>
+          <div class="progress-barr">
+            <div class="progresss" data-width="90%"></div>
           </div>
         </div>
-        <div class="skill">
-          <h3>Data Analysis</h3>
-          <div class="progress-bar">
-            <div class="progress" style="width: 90%"></div>
+        <div class="skill skill-hidden" data-aos="fade-right">
+          <h3>Deep Learning</h3>
+          <div class="progress-barr">
+            <div class="progresss" data-width="95%"></div>
+          </div>
+        </div>
+        <div class="skill skill-hidden" data-aos="fade-left">
+          <h3>NLP</h3>
+          <div class="progress-barr">
+            <div class="progresss" data-width="90%"></div>
+          </div>
+        </div>
+        <div class="skill skill-hidden" data-aos="fade-right">
+          <h3>Generative AI</h3>
+          <div class="progress-barr">
+            <div class="progresss" data-width="85%"></div>
+          </div>
+        </div>
+        <div class="skill skill-hidden" data-aos="fade-left">
+          <h3>TensorFlow</h3>
+          <div class="progress-barr">
+            <div class="progresss" data-width="90%"></div>
+          </div>
+        </div>
+        <div class="skill skill-hidden" data-aos="fade-right">
+          <h3>Keras</h3>
+          <div class="progress-barr">
+            <div class="progresss" data-width="95%"></div>
+          </div>
+        </div>
+        <div class="skill skill-hidden" data-aos="fade-left">
+          <h3>Streamlit</h3>
+          <div class="progress-barr">
+            <div class="progresss" data-width="80%"></div>
+          </div>
+        </div>
+        <div class="skill skill-hidden" data-aos="fade-right">
+          <h3>HuggingFace</h3>
+          <div class="progress-barr">
+            <div class="progresss" data-width="90%"></div>
+          </div>
+        </div>
+        <div class="skill skill-hidden" data-aos="fade-left">
+          <h3>Git</h3>
+          <div class="progress-barr">
+            <div class="progresss" data-width="85%"></div>
+          </div>
+        </div>
+        <div class="skill skill-hidden" data-aos="fade-right">
+          <h3>GitHub</h3>
+          <div class="progress-barr">
+            <div class="progresss" data-width="85%"></div>
+          </div>
+        </div>
+        <div class="skill skill-hidden" data-aos="fade-left">
+          <h3>Linux</h3>
+          <div class="progress-barr">
+            <div class="progresss" data-width="80%"></div>
+          </div>
+        </div>
+        <div class="skill skill-hidden" data-aos="fade-right">
+          <h3>Langchain</h3>
+          <div class="progress-barr">
+            <div class="progresss" data-width="85%"></div>
+          </div>
+        </div>
+        <div class="skill skill-hidden" data-aos="fade-left">
+          <h3>OpenAI API</h3>
+          <div class="progress-barr">
+            <div class="progresss" data-width="90%"></div>
           </div>
         </div>
       </div>
+      <button class="show-more-btn">Show More</button>
     </section>
 
     <!-- Bottom Section -->
     <section class="bottom-section-enhanced">
       <!-- Contact Section -->
+      <svg
+        class="bg-decor"
+        width="100%"
+        height="200"
+        viewBox="0 0 600 200"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <style>
+          .wave {
+            fill: none;
+            stroke-width: 2;
+            opacity: 0.3;
+          }
+          .wave-anim1 {
+            animation: waveMove 15s linear infinite;
+          }
+          .wave-anim2 {
+            animation: waveMove 20s linear infinite reverse;
+          }
+          .wave-anim3 {
+            animation: waveMove 18s linear infinite;
+          }
+          @keyframes waveMove {
+            0% {
+              stroke-dashoffset: 0;
+            }
+            100% {
+              stroke-dashoffset: -100;
+            }
+          }
+        </style>
+        <defs>
+          <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color: #3d9970" />
+            <stop offset="100%" style="stop-color: #2ecc40" />
+          </linearGradient>
+        </defs>
+        <path
+          class="wave wave-anim1"
+          stroke="url(#waveGradient)"
+          stroke-dasharray="20, 20"
+          d="M0 80 Q150 30 300 80 T600 80"
+        />
+        <path
+          class="wave wave-anim2"
+          stroke="url(#waveGradient)"
+          stroke-dasharray="15, 15"
+          d="M0 120 Q150 70 300 120 T600 120"
+        />
+        <path
+          class="wave wave-anim3"
+          stroke="url(#waveGradient)"
+          stroke-dasharray="25, 25"
+          d="M0 160 Q150 110 300 160 T600 160"
+        />
+      </svg>
       <div class="glass-container contact-section" id="contact">
         <div class="section-header">
           <h2>Contact Me</h2>
@@ -552,202 +742,108 @@
     </script>
     <script src="your-script-file.js" type="module"></script>
     <script>
-      // Fullscreen neural network loader with all features (no sound)
-      function createNeuralNetwork() {
-        const wrapper = document.getElementById("loader-wrapper");
-        const network = document.getElementById("neuralNetwork");
-        const layers = [8, 12, 15, 12, 10, 8]; // More nodes, layered structure
-        const nodes = [];
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-
-        // Create nodes across full screen
-        layers.forEach((nodeCount, layerIndex) => {
-          const layerNodes = [];
-          const xOffset = (layerIndex * width) / (layers.length - 1);
-          for (let i = 0; i < nodeCount; i++) {
-            const node = document.createElement("div");
-            node.className = "node";
-            const randomOffsetY = (Math.random() - 0.5) * (height / nodeCount);
-            const yPos = (height / (nodeCount + 1)) * (i + 1) + randomOffsetY;
-            const xPos =
-              xOffset + (Math.random() - 0.5) * (width / layers.length / 2);
-            node.style.left = `${xPos}px`;
-            node.style.top = `${yPos}px`;
-            node.style.animationDelay = `${layerIndex * 0.4}s`; // Sequential activation
-            network.appendChild(node);
-            layerNodes.push(node);
-
-            // Hover interactivity
-            node.addEventListener("mouseenter", () =>
-              node.classList.add("highlight")
-            );
-            node.addEventListener("mouseleave", () =>
-              node.classList.remove("highlight")
-            );
-          }
-          nodes.push(layerNodes);
-        });
-
-        // Dense connections for neural net look
-        for (let i = 0; i < nodes.length - 1; i++) {
-          const currentLayer = nodes[i];
-          const nextLayer = nodes[i + 1];
-          currentLayer.forEach((startNode) => {
-            const connectCount = Math.min(
-              nextLayer.length,
-              Math.floor(Math.random() * nextLayer.length * 0.8) + 3
-            );
-            const shuffledNext = nextLayer
-              .sort(() => 0.5 - Math.random())
-              .slice(0, connectCount);
-            shuffledNext.forEach((endNode) => {
-              const connection = document.createElement("div");
-              connection.className = "connection";
-              const startX = parseFloat(startNode.style.left);
-              const startY = parseFloat(startNode.style.top);
-              const endX = parseFloat(endNode.style.left);
-              const endY = parseFloat(endNode.style.top);
-              const length = Math.sqrt(
-                Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2)
-              );
-              const angle = Math.atan2(endY - startY, endX - startX);
-              connection.style.width = `${length}px`;
-              connection.style.left = `${startX}px`;
-              connection.style.top = `${startY}px`;
-              connection.style.transform = `rotate(${angle}rad)`;
-              connection.style.animationDelay = `${
-                i * 0.4 + Math.random() * 0.3
-              }s`;
-              network.appendChild(connection);
-
-              // Data pulse
-              const pulse = document.createElement("div");
-              pulse.className = "data-pulse";
-              pulse.style.left = `${startX}px`;
-              pulse.style.top = `${startY}px`;
-              pulse.style.setProperty("--end-x", `${endX - startX}px`);
-              pulse.style.setProperty("--end-y", `${endY - startY}px`);
-              pulse.style.animationDelay = `${i * 0.4 + Math.random() * 0.8}s`;
-              network.appendChild(pulse);
-            });
-          });
-        }
-
-        // Fullscreen particles
-        for (let i = 0; i < 100; i++) {
-          const particle = document.createElement("div");
-          particle.className = "particle";
-          particle.style.left = `${Math.random() * 100}vw`;
-          particle.style.top = `${Math.random() * 100}vh`;
-          particle.style.animationDelay = `${Math.random() * 4}s`;
-          wrapper.appendChild(particle); // Attach to wrapper, not network
-        }
-
-        // Techy text integration
-        const welcomeText = document.querySelector(".welcome-text");
-        welcomeText.style.position = "absolute";
-        welcomeText.style.bottom = "15vh";
-        welcomeText.style.left = "50%";
-        welcomeText.style.transform = "translateX(-50%)";
-        const text = "Welcome to My Portfolio";
-        welcomeText.innerHTML = "";
-        text.split("").forEach((char, idx) => {
-          const span = document.createElement("span");
-          span.textContent = char === " " ? "\u00A0" : char;
-          span.className = "welcome-char";
-          span.style.animationDelay = `${2.5 + idx * 0.08}s`; // After nodes
-          welcomeText.appendChild(span);
-        });
-
-        // AI Narrative (techy terminal style)
-        const narrative = document.createElement("div");
-        narrative.className = "ai-narrative";
-        narrative.style.bottom = "10vh";
-        wrapper.appendChild(narrative);
-        const narrativeTexts = [
-          "Initializing Neural Net...",
-          "Connecting Synapses...",
-          "Portfolio Online",
-        ];
-        let narrativeIdx = 0;
-        function updateNarrative() {
-          narrative.textContent = narrativeTexts[narrativeIdx];
-          narrativeIdx = (narrativeIdx + 1) % narrativeTexts.length;
-        }
-        updateNarrative();
-        setInterval(updateNarrative, 1200);
-      }
-
-      // Initialize loader
+      // Energy Loader Timing
       document.addEventListener("DOMContentLoaded", () => {
-        createNeuralNetwork();
+        const energyLoader = document.getElementById("energy-preloader");
+        const energySubtitle = document.querySelector(".energy-subtitle");
+        const displayDuration = 2000; // 2 seconds (adjust this value as needed)
 
-        // Hide loader with explosive finale
-        window.addEventListener("load", () => {
+        // Show loader and subtitle for specified duration, then fade out
+        setTimeout(() => {
+          energyLoader.classList.add("fade-out");
           setTimeout(() => {
-            const loader = document.getElementById("loader-wrapper");
-            const progressBar = document.querySelector(".progress-bar");
-            const network = document.getElementById("neuralNetwork");
-            const nodes = document.querySelectorAll(".node");
-            const connections = document.querySelectorAll(".connection");
-            const welcomeText = document.querySelector(".welcome-text");
+            energyLoader.style.display = "none";
+            energySubtitle.style.display = "none"; // Ensure subtitle disappears
+            // No need to set body background since hero section has its own
+          }, 800); // Matches CSS transition duration
+        }, displayDuration);
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const skillsSection = document.querySelector(".skills");
+        const skillsContainer = document.querySelector(".skills-container");
+        const allSkills = document.querySelectorAll(".skill");
+        const hiddenSkills = document.querySelectorAll(".skill-hidden");
+        const showMoreBtn = document.querySelector(".show-more-btn");
+        let isExpanded = false;
 
-            // Progress bar to 100%
-            progressBar.style.width = "100%";
+        // Function to animate progress bars
+        function animateProgress(skill) {
+          const progress = skill.querySelector(".progresss");
+          const targetWidth = progress.getAttribute("data-width");
+          progress.style.transition = "none"; // Reset transition
+          progress.style.width = "0"; // Reset to 0
+          setTimeout(() => {
+            progress.style.transition = "width 1s ease-in-out"; // Reapply transition
+            progress.style.width = targetWidth; // Animate to target width
+          }, 10);
+        }
 
-            // Explosive finale
-            setTimeout(() => {
-              nodes.forEach((node, idx) => {
-                node.style.transition = "all 0.6s ease";
-                node.style.transform = `translate(${
-                  (Math.random() - 0.5) * 500
-                }px, ${(Math.random() - 0.5) * 500}px) scale(0)`;
-                node.style.opacity = "0";
-              });
-              connections.forEach((conn) => (conn.style.opacity = "0"));
-              welcomeText.style.opacity = "0";
+        // Function to reset skills
+        function resetSkills() {
+          allSkills.forEach((skill) => {
+            skill.style.opacity = "0";
+            skill.classList.remove("skill-visible");
+            skill.classList.add("skill-hidden");
+            const progress = skill.querySelector(".progresss");
+            progress.style.width = "0"; // Reset progress bar
+          });
+          // Restore initial visible skills
+          const initialSkills = document.querySelectorAll(".skill[data-aos]");
+          initialSkills.forEach((skill) => {
+            skill.classList.remove("skill-hidden");
+            skill.classList.add("skill-visible");
+          });
+          showMoreBtn.style.display = "block"; // Show button again
+          isExpanded = false;
+        }
 
-              // Finale particles forming "Sujal"
-              const finaleParticles = [];
-              for (let i = 0; i < 150; i++) {
-                const particle = document.createElement("div");
-                particle.className = "finale-particle";
-                particle.style.left = `${Math.random() * 100}vw`;
-                particle.style.top = `${Math.random() * 100}vh`;
-                loader.appendChild(particle);
-                finaleParticles.push(particle);
-              }
-              setTimeout(() => {
-                const sujalPositions = [
-                  { x: 40, y: 45 },
-                  { x: 45, y: 45 },
-                  { x: 50, y: 45 },
-                  { x: 55, y: 45 },
-                  { x: 60, y: 45 }, // Rough "Sujal"
-                ];
-                finaleParticles.forEach((p, idx) => {
-                  p.style.transition = "all 0.8s ease";
-                  const pos = sujalPositions[idx % 5];
-                  p.style.left = `${pos.x}vw`;
-                  p.style.top = `${pos.y}vh`;
-                });
-                setTimeout(() => {
-                  finaleParticles.forEach((p) => {
-                    p.style.transform = `translate(${
-                      (Math.random() - 0.5) * 2000
-                    }px, ${(Math.random() - 0.5) * 2000}px)`;
-                    p.style.opacity = "0";
-                  });
-                  loader.classList.add("fade-out");
+        // Intersection Observer for animation
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const visibleSkills =
+                  skillsContainer.querySelectorAll(".skill-visible");
+                visibleSkills.forEach((skill, index) => {
                   setTimeout(() => {
-                    loader.style.display = "none";
-                    document.body.style.backgroundColor = "#fff";
-                  }, 500);
-                }, 800);
-              }, 600);
-            }, 1500);
-          }, 6000); // ~7.5s total for full effect
+                    skill.style.opacity = "1";
+                    skill.classList.remove("reset");
+                    animateProgress(skill);
+                  }, index * 200); // Staggered animation
+                });
+              } else {
+                const visibleSkills =
+                  skillsContainer.querySelectorAll(".skill-visible");
+                visibleSkills.forEach((skill) => {
+                  skill.classList.add("reset");
+                  skill.style.opacity = "0";
+                });
+                if (isExpanded) {
+                  resetSkills(); // Reset when leaving section after expansion
+                }
+              }
+            });
+          },
+          { threshold: 0.2 }
+        );
+
+        observer.observe(skillsSection);
+
+        // Show More Button Functionality
+        showMoreBtn.addEventListener("click", () => {
+          hiddenSkills.forEach((skill, index) => {
+            setTimeout(() => {
+              skill.classList.remove("skill-hidden");
+              skill.classList.add("skill-visible");
+              skill.style.display = "block";
+              skill.style.opacity = "1";
+              animateProgress(skill);
+            }, index * 100); // Staggered reveal
+          });
+          showMoreBtn.style.display = "none"; // Hide button
+          isExpanded = true;
         });
       });
     </script>
